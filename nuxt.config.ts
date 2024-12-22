@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    openaiKey: ''
+    openaiKey: '',
+    replicateKey: ''
   }
 })
