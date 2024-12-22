@@ -17,6 +17,7 @@
     "nuxt": "^3.14.1592",
     "openai": "^4.77.0",
     "radix-vue": "^1.9.11",
+    "replicate": "^1.0.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",
