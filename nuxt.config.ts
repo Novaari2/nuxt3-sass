@@ -12,6 +12,13 @@ export default defineNuxtConfig({
       prefix: ''
     },
     {
+      path: '~/components/shared',
+      // this is required else Nuxt will autoImport '.ts' file
+      extensions: ['.vue'],
+      // prefix for your components e.g. UiButton
+      prefix: ''
+    },
+    {
       path: '~/components',
       // this is required else Nuxt will autoImport '.ts' file
       extensions: ['.vue'],
@@ -25,5 +32,8 @@ export default defineNuxtConfig({
       callback: '/confirm',
       exclude: ['/'],
     }
+  },
+  runtimeConfig: {
+    openaiKey: ''
   }
 })

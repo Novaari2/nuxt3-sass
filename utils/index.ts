@@ -45,13 +45,6 @@ export const dashboardLinks = [
 
 export const tools = [
     {
-        label: "Dashboard",
-        icon: 'lucide:layout-dashboard',
-        link: "/dashboard",
-        color: 'text-sky-500',
-        bgColor: 'bg-sky-500/10'
-    },
-    {
         label: "Conversation",
         icon: 'lucide:message-square',
         link: "/conversation",
