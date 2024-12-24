@@ -21,6 +21,7 @@
     "pinia": "^2.3.0",
     "radix-vue": "^1.9.11",
     "replicate": "^1.0.1",
+    "stripe": "^17.5.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",

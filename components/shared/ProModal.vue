@@ -32,7 +32,7 @@
         </DialogHeader>
 
         <DialogFooter>
-            <Button variant="premium" size="lg" class="w-full">
+            <Button @click="onSubscribe" variant="premium" size="lg" class="w-full">
                 Upgrade
                 <Icon name="lucide:zap" class="w-4 h-4 ml-2 fill-white" />
             </Button>
@@ -45,6 +45,14 @@
 import {useProModal} from '~/store/useProModal'
 
 const store = useProModal()
+const onSubscribe = async() => {
+    const { data } = await useFetch('/api/stripe');
+    if(data.value?.url){
+        
+        // @ts-ignore
+        window.location.href = data.value.url
+    }
+}
 </script>
 
 <style scoped>
