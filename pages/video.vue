@@ -34,7 +34,9 @@
 </template>
 
 <script setup lang="ts">
+import {useProModal} from '~/store/useProModal'
 
+const store = useProModal()
 const prompt = ref("");
 const isLoading = ref(false);
 const video = ref<string>();
@@ -50,11 +52,15 @@ const submitForm = async() => {
 
     if(data.value){
         video.value = data.value[0]
+        await refreshNuxtData('userData')
     }
 
     if(error.value){
         console.log('[VIDEO_Error]', error.value.statusMessage);
         // TODO: Check Error Type
+        if(error.value.statusCode === 403){
+            store.onOpen();
+        }
     }
 
     isLoading.value = false

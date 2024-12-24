@@ -22,11 +22,41 @@
             </div>
         </div>
         <!-- Counter -->
+         <div class="px-3 border-t border-b">
+            <div class="bg-white/10 border-0">
+                <div py-6 px-2>
+                    <div class="text-center text-sm mb-4 space-y-4">
+                        <p>{{ user?.apiCount }} / {{ MAX_COUNT }} Free Generations</p>
+                        <!-- progress -->
+                         <Progress v-model="progress" class="w-full" />
+                    </div>
+                    <Button @click="store.onOpen" variant="premium" class="w-full">
+                        Upgrade 
+                        <Icon name="lucide:zap" class="w-4 h-4 ml-2 fill-white" />
+                    </Button>
+                </div>
+            </div>
+         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import {useProModal} from '~/store/useProModal'
+
+const store = useProModal()
 const currentRoute = useRoute()
+const { data: user, pending } = await useFetch('/api/user', {
+    method: 'GET',
+    key: 'userData'
+})
+
+const progress = computed(() => {
+    if(user.value && !pending.value){
+        return ( user.value.apiCount / MAX_COUNT ) * 100
+    }
+
+    return 0
+})
 </script>
 
 <style scoped>

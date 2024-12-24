@@ -74,8 +74,9 @@
 </template>
 
 <script setup lang="ts">
+import {useProModal} from '~/store/useProModal'
 
-
+const store = useProModal()
 const prompt = ref("");
 const amount = ref('1');
 const resolution = ref("256x256");
@@ -103,11 +104,16 @@ const submitForm = async() => {
 
             return ''
         })
+
+        await refreshNuxtData('userData')
     }
 
     if(error.value){
         console.log('[Image_Error]', error.value.statusMessage);
         // TODO: Check Error Type
+        if(error.value.statusCode === 403){
+            store.onOpen();
+        }
     }
     prompt.value = "";
     isLoading.value = false

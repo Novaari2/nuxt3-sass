@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss','@nuxtjs/supabase','nuxt-icon'],
+  modules: ['@nuxtjs/tailwindcss','@nuxtjs/supabase','nuxt-icon','@pinia/nuxt'],
   components: [
     {
       path: '~/components/ui',

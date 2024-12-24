@@ -114,3 +114,5 @@ export const amountOptions = [
         text: "4 Photos"
     }
 ]
+
+export const MAX_COUNT = 5

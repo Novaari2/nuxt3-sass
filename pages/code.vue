@@ -53,7 +53,9 @@
 
 <script setup lang="ts">
 import {ChatCompletionRequestMessage} from '~/types';
+import {useProModal} from '~/store/useProModal'
 
+const store = useProModal()
 const prompt = ref("");
 const isLoading = ref(false);
 const messages = ref<ChatCompletionRequestMessage[]>([])
@@ -83,11 +85,16 @@ const submitForm = async() => {
                 content: data.value.content as string,
             }
         ];
+
+        await refreshNuxtData('userData')
     }
 
     if(error.value){
         console.log('[Conversation_Error]', error.value.statusMessage);
         // TODO: Check Error Type
+        if(error.value.statusCode === 403){
+            store.onOpen();
+        }
     }
 
     isLoading.value = false
