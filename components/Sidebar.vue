@@ -22,7 +22,7 @@
             </div>
         </div>
         <!-- Counter -->
-         <div class="px-3 border-t border-b">
+         <div v-if="!isPro && (!isLoading || !pending)" class="px-3 border-t border-b">
             <div class="bg-white/10 border-0">
                 <div py-6 px-2>
                     <div class="text-center text-sm mb-4 space-y-4">
@@ -57,6 +57,8 @@ const progress = computed(() => {
 
     return 0
 })
+
+const { data: isPro, pending: isLoading } = await useFetch('/api/stripe/checkStatus')
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { checkApiLimit, incrementApiLimit, protectRoute } from "~/server/utils";
+import { checkApiLimit, incrementApiLimit, isUserPro, protectRoute } from "~/server/utils";
 import { User } from '~/server/types'
 
 const config = useRuntimeConfig();
@@ -34,7 +34,9 @@ export default defineEventHandler(async (event) => {
     }
 
     const freeTrial = await checkApiLimit(user.id);
-    if(!freeTrial){
+    const isPro = await isUserPro(user.id);
+
+    if(!freeTrial && !isPro){
         throw createError({
             statusCode: 403,
             statusMessage: "Free trial has expired. Please upgrade to pro."
